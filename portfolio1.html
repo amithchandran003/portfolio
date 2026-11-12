@@ -201,43 +201,130 @@
   .sec-label .slash{color:var(--accent);}
 
   /* ===================== WORK ===================== */
-  .work-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px;flex-wrap:wrap;gap:16px;}
-  .filters{display:flex;gap:22px;font-size:14px;color:var(--ink-soft);}
-  .filters button{background:none;border:none;color:inherit;font-size:14px;padding:0;position:relative;}
-  .filters button.active{color:var(--ink);font-weight:600;}
-  .filters button.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent);}
-  .view-all{
-    display:inline-flex;align-items:center;gap:8px;
-    border:1px solid var(--line);border-radius:30px;padding:10px 18px;font-size:13px;font-weight:500;
-  }
+  /* ===== UPDATED PROJECT CARDS ===== */
 
-  .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding-bottom:60px;flex:1;}
-  .work-card{display:none;}
-  .work-card.show{display:block;}
-  .work-card{
-    background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;
-    transition:transform .25s ease, border-color .25s ease;
-  }
-  .work-card:hover{transform:translateY(-4px);border-color:var(--accent);}
-  .work-thumb{
-    height:190px;position:relative;display:flex;align-items:flex-end;padding:16px;
-    overflow:hidden;
-  }
-  .work-thumb .wtag{
-    font-family:'JetBrains Mono',monospace;font-size:10.5px;color:rgba(255,255,255,0.9);
-    position:absolute;top:14px;left:16px;background:rgba(0,0,0,0.2);
-    padding:4px 9px;border-radius:20px;
-  }
-  .work-thumb .wtitle{font-size:26px;font-weight:800;color:rgba(255,255,255,0.95);letter-spacing:-0.01em;}
-  .work-info{padding:16px 18px 20px;}
-  .work-info h3{font-size:16px;font-weight:700;margin-bottom:6px;}
-  .work-info p{font-size:13.5px;color:var(--ink-soft);margin-bottom:12px;line-height:1.5;}
-  .work-chips{display:flex;flex-wrap:wrap;gap:6px;}
-  .work-chips span{
-    font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--accent-soft);color:var(--accent);
-    padding:3px 8px;border-radius:5px;
-  }
+.work-card {
+  display: none;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
 
+.work-card.show {
+  display: block;
+}
+
+.work-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+}
+
+.work-thumb {
+  height: 210px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 18px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.work-thumb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.08),
+    rgba(0,0,0,0.72)
+  );
+  transition: background .3s ease;
+}
+
+.work-card:hover .work-thumb::before {
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.12),
+    rgba(0,0,0,0.82)
+  );
+}
+
+.work-thumb .wtag,
+.work-thumb .wtitle {
+  position: relative;
+  z-index: 1;
+}
+
+.work-thumb .wtag {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  color: white;
+  background: rgba(0,0,0,0.45);
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.work-thumb .wtitle {
+  font-size: 26px;
+  font-weight: 800;
+  color: white;
+}
+
+.work-info {
+  padding: 16px 18px 20px;
+}
+
+.work-info h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.work-info p {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.work-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.work-chips span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 3px 8px;
+  border-radius: 5px;
+}
+
+.github-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.github-indicator svg {
+  width: 15px;
+  height: 15px;
+}
   /* ===================== SERVICE ===================== */
   .service-list{flex:1;display:flex;flex-direction:column;justify-content:center;padding-bottom:60px;}
   .service-row{
@@ -310,6 +397,122 @@
     .sec-head{padding-top:100px;}
     .work-grid{grid-template-columns:1fr;}
   }
+  /* ===== SELECTED WORK SECTION LAYOUT FIX ===== */
+
+#work .inner {
+    width: 100%;
+}
+
+#work .sec-head {
+    position: relative;
+    margin-bottom: 48px;
+}
+
+#work .sec-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: clamp(38px, 4vw, 68px);
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+#work .sec-label .slash {
+    color: #294b91;
+}
+
+#work .work-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+#work .filters {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+}
+
+#work .filters button {
+    appearance: none;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0 0 10px;
+    margin: 0;
+    border-radius: 0;
+    color: var(--ink-soft);
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+}
+
+#work .filters button.active {
+    color: var(--ink);
+    font-weight: 700;
+}
+
+#work .filters button.active::after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background: #294b91;
+}
+
+#work .view-all {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    border: 1px solid var(--line);
+    border-radius: 50px;
+    background: transparent;
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: .25s ease;
+}
+
+#work .view-all:hover {
+    background: var(--ink);
+    color: white;
+}
+
+#work .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+}
+
+@media (max-width: 650px) {
+    #work .work-top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    #work .filters {
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    #work .filters button {
+        font-size: 14px;
+    }
+
+    #work .work-grid {
+        grid-template-columns: 1fr;
+    }
+}
 </style>
 </head>
 <body>
@@ -375,7 +578,7 @@
       <div class="hero-body">
         <div class="hero-left">
           <div class="role">Developer &amp; Designer</div>
-          <div class="desc">I write full-stack code and design the interfaces around it — one CS degree, two internships, four hackathon wins.</div>
+          <div class="desc">I build intelligent solutions using Machine Learning, Deep Learning and Generative AI — combining my Computer Science background, hands-on project experience and passion for solving real-world problems.</div>
           <a href="#work" class="btn-dark js-goto" data-target="work">See my work ↗</a>
         </div>
         <div class="hero-portrait">
@@ -386,72 +589,154 @@
   </section>
 
   <!-- WORK -->
-  <section class="panel paper" data-theme="light" id="work">
-    <div class="inner">
-      <div class="sec-head">
-        <div class="ghost-word">Projects</div>
-        <div class="sec-label"><span class="slash">/</span>SELECTED WORK</div>
-      </div>
-      <div class="work-top">
-        <div class="filters">
-          <button class="active" data-filter="all">All</button>
-          <button data-filter="dev">Development</button>
-          <button data-filter="design">Design &amp; AI</button>
-        </div>
-        <a href="https://github.com/amithchandran003" target="_blank" rel="noopener" class="view-all">View GitHub ↗</a>
-      </div>
-      <div class="work-grid" id="workGrid">
-        <div class="work-card show" data-cat="design">
-          <div class="work-thumb" style="background:linear-gradient(135deg,#2A4B8D,#4C6FB8);">
-            <span class="wtag">HEALTHTECH · AI</span>
-            <span class="wtitle">Brain Tumor Detection</span>
-          </div>
-          <div class="work-info">
-            <h3>AI-Powered Brain Tumor Detection</h3>
-            <p>Unified deep learning framework for detection, classification, segmentation and growth prediction from MRI scans, with an explainable, real-time Streamlit interface.</p>
-            <div class="work-chips"><span>Python</span><span>Deep Learning</span><span>Streamlit</span></div>
-          </div>
-        </div>
+<!-- WORK -->
+<section class="panel paper" data-theme="light" id="work">
+  <div class="inner">
 
-        <div class="work-card show" data-cat="dev">
-          <div class="work-thumb" style="background:linear-gradient(135deg,#B4552F,#D98A62);">
-            <span class="wtag">IOT</span>
-            <span class="wtitle">Smart Pill Box</span>
-          </div>
-          <div class="work-info">
-            <h3>Smart Pill Box</h3>
-            <p>Wi-Fi enabled, voice-assisted pillbox with real-time alerts and a web scheduling interface — improved medication adherence by 40% in testing.</p>
-            <div class="work-chips"><span>IoT</span><span>Voice UI</span><span>Web</span></div>
-          </div>
-        </div>
-
-        <div class="work-card show" data-cat="dev">
-          <div class="work-thumb" style="background:linear-gradient(135deg,#3E7C63,#6FAB8F);">
-            <span class="wtag">WEB PLATFORM</span>
-            <span class="wtitle">Pet Connect</span>
-          </div>
-          <div class="work-info">
-            <h3>Pet Connect</h3>
-            <p>A secure, user-friendly adoption platform streamlining the shelter-to-adopter workflow to increase successful pet adoptions.</p>
-            <div class="work-chips"><span>React</span><span>Node.js</span><span>MySQL</span></div>
-          </div>
-        </div>
-
-        <div class="work-card show" data-cat="dev">
-          <div class="work-thumb" style="background:linear-gradient(135deg,#6B5B95,#9385BE);">
-            <span class="wtag">SYSTEMS</span>
-            <span class="wtitle">Library Manager</span>
-          </div>
-          <div class="work-info">
-            <h3>Library Management System</h3>
-            <p>Automated key library operations with real-time resource tracking, cutting errors and speeding up access for users.</p>
-            <div class="work-chips"><span>Full-Stack</span><span>MySQL</span></div>
-          </div>
-        </div>
+    <div class="sec-head">
+      <div class="ghost-word">Projects</div>
+      <div class="sec-label">
+        <span class="slash">/</span>SELECTED WORK
       </div>
     </div>
-  </section>
 
+    <div class="work-top">
+
+    <div class="filters">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="dev">Development</button>
+        <button data-filter="design">Design &amp; AI</button>
+    </div>
+
+    <a href="https://github.com/amithchandran003"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="view-all">
+       View GitHub ↗
+    </a>
+
+    </div>
+
+    <div class="work-grid" id="workGrid">
+
+      <!-- BRAIN TUMOR DETECTION -->
+      <a href="https://github.com/amithchandran003/Brain-Tumor-Detection-Using-Deep-Learning.git"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="work-card show"
+         data-cat="design"
+         style="text-decoration:none;color:inherit;">
+
+        <div class="work-thumb"
+             style="background:
+             linear-gradient(0deg,rgba(20,35,75,.82),rgba(20,35,75,.08)),
+             url('https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1000&q=85') center/cover;">
+
+          <span class="wtag">HEALTHTECH · AI</span>
+          <span class="wtitle">Brain Tumor Detection</span>
+        </div>
+
+        <div class="work-info">
+          <h3>AI-Powered Brain Tumor Detection</h3>
+          <p>Unified deep learning framework for detection, classification, segmentation and growth prediction from MRI scans, with an explainable, real-time Streamlit interface.</p>
+
+          <div class="work-chips">
+            <span>Python</span>
+            <span>Deep Learning</span>
+            <span>Streamlit</span>
+          </div>
+        </div>
+      </a>
+
+
+      <!-- SMART PILL BOX -->
+      <div class="work-card show" data-cat="dev">
+
+        <div class="work-thumb"
+             style="background:
+             linear-gradient(0deg,rgba(100,43,20,.82),rgba(100,43,20,.08)),
+             url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1000&q=85') center/cover;">
+
+          <span class="wtag">IOT</span>
+          <span class="wtitle">Smart Pill Box</span>
+        </div>
+
+        <div class="work-info">
+          <h3>Smart Pill Box</h3>
+          <p>Wi-Fi enabled, voice-assisted pillbox with real-time alerts and a web scheduling interface — improved medication adherence by 40% in testing.</p>
+
+          <div class="work-chips">
+            <span>IoT</span>
+            <span>Voice UI</span>
+            <span>Web</span>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- AQUASAVE -->
+      <a href="https://github.com/amithchandran003/Aquasave.git"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="work-card show"
+         data-cat="dev"
+         style="text-decoration:none;color:inherit;">
+
+        <div class="work-thumb"
+             style="background:
+             linear-gradient(0deg,rgba(20,75,55,.82),rgba(20,75,55,.08)),
+             url('https://hackster.imgix.net/uploads/attachments/1509451/_Z9qYy6F0Q3.blob?auto=compress%2Cformat&fit=min&h=675&w=900') center/cover;">
+
+          <span class="wtag">WEB PLATFORM</span>
+          <span class="wtitle">Aquasave</span>
+        </div>
+
+        <div class="work-info">
+          <h3>Aquasave</h3>
+          <p>A secure, user-friendly adoption platform streamlining the shelter-to-adopter workflow to increase successful pet adoptions.</p>
+
+          <div class="work-chips">
+            <span>React</span>
+            <span>Node.js</span>
+            <span>MySQL</span>
+          </div>
+        </div>
+      </a>
+
+
+      <!-- KNOWLEDGE RELIABILITY AI -->
+      <a href="https://github.com/amithchandran003/knowledge-reliability-ai.git"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="work-card show"
+         data-cat="dev"
+         style="text-decoration:none;color:inherit;">
+
+        <div class="work-thumb"
+             style="background:
+             linear-gradient(0deg,rgba(55,40,95,.85),rgba(55,40,95,.08)),
+             url('https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1000&q=85') center/cover;">
+
+          <span class="wtag">GENERATIVE AI</span>
+          <span class="wtitle">Knowledge Reliability AI</span>
+        </div>
+
+        <div class="work-info">
+          <h3>Knowledge Reliability AI</h3>
+          <p>Engineered a dynamic Retrieval-Augmented Generation (RAG) framework using Gemini API and embeddings to retrieve source-specific evidence and generate grounded LLM responses, delivered through a Streamlit interface.</p>
+
+          <div class="work-chips">
+            <span>Gemini API</span>
+            <span>Embeddings</span>
+            <span>RAG</span>
+            <span>Streamlit</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
   <!-- SERVICE -->
   <section class="panel dark" data-theme="dark" id="service">
     <div class="inner">
@@ -462,8 +747,10 @@
       <div class="service-list" id="serviceList">
         <div class="service-row open">
           <div>
-            <h3>Full-Stack Development</h3>
-            <div class="sdesc">React, Node.js, Express and MySQL — building and shipping dynamic web applications end to end.</div>
+            <h3>AI & MACHINE LEARNING</h3>
+            <div class="sdesc">Python, Machine Learning, Deep Learning and Generative AI —
+            developing intelligent solutions using data, predictive
+            models, LLMs and Retrieval-Augmented Generation (RAG).</div>
           </div>
           <div class="service-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
         </div>
@@ -559,7 +846,7 @@
       <p>Full-stack development, product design, or QA — I'd love to hear what you're working on.</p>
       <a href="mailto:amithchandran003@gmail.com" class="btn-dark">amithchandran003@gmail.com</a>
       <div class="contact-socials">
-        <a href="https://github.com/amithchandran003" target="_blank" rel="noopener" class="soc-pill"><svg><use href="#icon-github"/></svg> GitHub</a>
+        <a href="https://github.com/amithchandran003-stack" target="_blank" rel="noopener" class="soc-pill"><svg><use href="#icon-github"/></svg> GitHub</a>
         <a href="https://www.linkedin.com/in/amith-chandran-61849a373" target="_blank" rel="noopener" class="soc-pill"><svg><use href="#icon-linkedin"/></svg> LinkedIn</a>
         <a href="https://www.behance.net/amithchandran" target="_blank" rel="noopener" class="soc-pill"><svg><use href="#icon-behance"/></svg> Behance</a>
         <a href="https://www.instagram.com/amith.arts" target="_blank" rel="noopener" class="soc-pill"><svg><use href="#icon-instagram"/></svg> Instagram</a>
